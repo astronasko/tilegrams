@@ -11,6 +11,7 @@ import brazilTopoJson from '../../maps/brazil/brazil.topo.json'
 import irelandTopoJson from '../../maps/ireland/Irish_Constituencies.topo.json'
 import ukRegionsTopojson from '../../maps/uk/uk_countries_and_england_regions.topo.json'
 import indiaTopojson from '../../maps/india/india.topo.json'
+import bulgariaTopojson from '../../maps/bulgaria/bulgaria.topo.json'
 
 import MapResource from './MapResource'
 import fipsHash from '../../data/us/fips-to-state.json'
@@ -24,6 +25,7 @@ import brazilHash from '../../data/brazil/brazil-names.json'
 import irelandHash from '../../data/ireland/constituency_names.json'
 import ukRegionsHash from '../../data/uk/uk_region_names.json';
 import indiaHash from '../../data/india/india_names.json';
+import bulgariaHash from '../../data/bulgaria/bulgaria_names.json';
 
 const usProjection = (canvasDimensions) => {
   return geoAlbersUsa()
@@ -104,6 +106,16 @@ const indiaProjection = (canvasDimensions) => {
     ])
 }
 
+const bulgariaProjection = (canvasDimensions) => {
+  return geoMercator()
+    .center([25.474, 42.733])
+    .scale(canvasDimensions.height * 10)
+    .translate([
+      canvasDimensions.width * 0.5,
+      canvasDimensions.height * 0.5,
+    ])
+}
+
 class GeographyResource {
   constructor() {
     this._geographies = [
@@ -172,6 +184,12 @@ class GeographyResource {
         mapResource: new MapResource(indiaTopojson, 'india'),
         geoCodeToName: indiaHash,
         projection: indiaProjection,
+      },
+      {
+        label: 'Bulgaria',
+        mapResource: new MapResource(bulgariaTopojson, 'map'),
+        geoCodeToName: bulgariaHash,
+        projection: bulgariaProjection,
       },
     ]
   }

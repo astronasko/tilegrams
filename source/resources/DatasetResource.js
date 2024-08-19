@@ -14,6 +14,7 @@ import brazilPopulation2018 from '../../data/brazil/brazil-populations.csv'
 import irelandVotes from '../../data/ireland/constituency_values.csv'
 import ukRegionConstituencyCounts from '../../data/uk/uk_region_constituency_counts.csv'
 import indiaContituencyCounts from '../../data/india/india_constituency_counts.csv';
+import bulgariaPopulation from '../../data/bulgaria/bulgaria-population.csv'
 
 class DatasetResource {
   constructor() {
@@ -105,6 +106,12 @@ class DatasetResource {
         data: this.parseCsv(indiaContituencyCounts, 'India'),
         geography: 'India',
         defaultResolution: 1,
+      },
+      {
+        label: 'Bulgaria – Population',
+        data: this.parseCsv(bulgariaPopulation, 'Bulgaria'),
+        geography: 'Bulgaria',
+        defaultResolution: 1000,
       },
     ]
 
