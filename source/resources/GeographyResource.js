@@ -109,7 +109,7 @@ const indiaProjection = (canvasDimensions) => {
 const bulgariaProjection = (canvasDimensions) => {
   return geoMercator()
     .center([25.474, 42.733])
-    .scale(canvasDimensions.height * 10)
+    .scale(canvasDimensions.height * 14)
     .translate([
       canvasDimensions.width * 0.5,
       canvasDimensions.height * 0.5,
