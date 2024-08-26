@@ -15,6 +15,11 @@ import irelandVotes from '../../data/ireland/constituency_values.csv'
 import ukRegionConstituencyCounts from '../../data/uk/uk_region_constituency_counts.csv'
 import indiaContituencyCounts from '../../data/india/india_constituency_counts.csv';
 import bulgariaPopulation from '../../data/bulgaria/bulgaria-population.csv'
+import bulgariaCrime from '../../data/bulgaria/bulgaria-crime.csv'
+import bulgariaRubbish from '../../data/bulgaria/bulgaria-rubbish.csv'
+import bulgariaGDP from '../../data/bulgaria/bulgaria-gdp.csv'
+import bulgariaTourism from '../../data/bulgaria/bulgaria-tourism.csv'
+import bulgariaArea from '../../data/bulgaria/bulgaria-area.csv'
 
 class DatasetResource {
   constructor() {
@@ -112,6 +117,36 @@ class DatasetResource {
         data: this.parseCsv(bulgariaPopulation, 'Bulgaria'),
         geography: 'Bulgaria',
         defaultResolution: 1000,
+      },
+      {
+        label: 'Bulgaria – GDP',
+        data: this.parseCsv(bulgariaGDP, 'Bulgaria'),
+        geography: 'Bulgaria',
+        defaultResolution: 100,
+      },
+      {
+        label: 'Bulgaria – Crime',
+        data: this.parseCsv(bulgariaCrime, 'Bulgaria'),
+        geography: 'Bulgaria',
+        defaultResolution: 5,
+      },
+      {
+        label: 'Bulgaria – Rubbish',
+        data: this.parseCsv(bulgariaRubbish, 'Bulgaria'),
+        geography: 'Bulgaria',
+        defaultResolution: 1,
+      },
+      {
+        label: 'Bulgaria – Tourism',
+        data: this.parseCsv(bulgariaTourism, 'Bulgaria'),
+        geography: 'Bulgaria',
+        defaultResolution: 1000000,
+      },
+      {
+        label: 'Bulgaria – Area',
+        data: this.parseCsv(bulgariaArea, 'Bulgaria'),
+        geography: 'Bulgaria',
+        defaultResolution: 50,
       },
     ]
 
