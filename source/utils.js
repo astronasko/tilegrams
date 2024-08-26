@@ -1,25 +1,83 @@
-function hashCode(input) {
-  let hash = 0;
-  if (input.length === 0) {
-    return hash;
-  }
-  for (let i = 0; i < input.length; i++) {
-    const char = input.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash &= hash; // Convert to 32bit integer
-  }
-  return hash;
-}
+// Dictionary to store the unique integer assignment for each FIPS code
+const fipsMap = {};
+let nextInt = 0;
 
-/** Return a pseudo-random color for a given geo code */
+/** Return a color from a cyclic palette for a given geo code */
 function fipsColor(fips) {
-  const scaleTo = 56
-  let number = parseInt(fips, 10) % scaleTo
-  if (isNaN(number)) {
-    number = hashCode(fips.split('').reverse().join('')) % scaleTo
+  // If the FIPS code has not been encountered before, assign it the next integer
+  if (!(fips in fipsMap)) {
+    fipsMap[fips] = nextInt++;
   }
-  const scalar = number / scaleTo
-  return `hsl(${360 - ((scalar * 180.0) + 180.0)}, 87%, 70%)`
+
+  const colors = [
+    '#00FF00',
+    '#0000FF',
+    '#FF0000',
+    '#01FFFE',
+    '#FFA6FE',
+    '#FFDB66',
+    '#006401',
+    '#010067',
+    '#95003A',
+    '#007DB5',
+    '#FF00F6',
+    '#774D00',
+    '#90FB92',
+    '#0076FF',
+    '#D5FF00',
+    '#FF937E',
+    '#6A826C',
+    '#FF029D',
+    '#FE8900',
+    '#7A4782',
+    '#7E2DD2',
+    '#85A900',
+    '#FF0056',
+    '#A42400',
+    '#00AE7E',
+    '#683D3B',
+    '#BDC6FF',
+    '#BDD393',
+    '#00B917',
+    '#9E008E',
+    '#C28C9F',
+    '#FF74A3',
+    '#01D0FF',
+    '#004754',
+    '#E56FFE',
+    '#788231',
+    '#0E4CA1',
+    '#91D0CB',
+    '#BE9970',
+    '#968AE8',
+    '#BB8800',
+    '#43002C',
+    '#DEFF74',
+    '#00FFC6',
+    '#FFE502',
+    '#620E00',
+    '#008F9C',
+    '#98FF52',
+    '#7544B1',
+    '#B500FF',
+    '#00FF78',
+    '#FF6E41',
+    '#005F39',
+    '#6B6882',
+    '#5FAD4E',
+    '#A75740',
+    '#FFB167',
+    '#009BFF',
+    '#E85EBE',
+  ];
+  const scaleTo = colors.length;
+
+  // Get the unique integer assigned to this FIPS code
+  const number = fipsMap[fips];
+
+  // Get the index in the color palette
+  const colorIndex = number % scaleTo;
+  return colors[colorIndex];
 }
 
 /** Create DOM element. Options may include 'id' */
